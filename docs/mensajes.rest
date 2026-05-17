@@ -1,0 +1,37 @@
+POST http://127.0.0.1:3000/api/enviar-mensaje
+Content-Type: application/json
+
+{
+    "numero": "59173277937",
+    "mensaje": {
+        "type": "text",
+        "body": "Hola desde Node para whatsapp"
+    }
+}
+
+### imagen
+POST http://127.0.0.1:3000/api/enviar-mensaje
+Content-Type: application/json
+
+{
+    "numero": "59173277937",
+    "mensaje": {
+        "type": "image",
+        "link": "https://blumbitvirtual.edtics.com/pluginfile.php/6773/course/overviewfiles/Post%20N8N.jpg"
+    }
+}
+
+
+### document
+POST http://127.0.0.1:3000/api/enviar-mensaje
+Content-Type: application/json
+
+{
+    "numero": "59173277937",
+    "mensaje": {
+        "type": "document",
+        "link": "https://blumbit.iivot.com/uploads/1758556938804-827644277-Temario%20N8N%20(1).pdf",
+        "filename": "temario.pdf",
+        "caption": "Hola te envío el temario del curso *n8n* con ia"
+    }
+}

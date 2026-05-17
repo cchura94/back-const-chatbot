@@ -3,7 +3,7 @@ const axios = require("axios");
 const whatsappUrl = `https://graph.facebook.com/v25.0/388467921024360/messages`
 
 const headers = {
-    Authorization: "Bearer EAANIKtenp4QBRSeS2JHBBX5nofZBplslKDJBRaSLqpF9QuWGR3LZCqx1kuKOfy4WwOL7Pil0sxwooJhmgqD5Ngpnp4xWgk7buPHhax2jUMsrKTeDHzFxWpVWHavsciYNyy2EjKPDZANqZBwD5PNSQSfm7NxDjTTNTym30q32FObXTkvso2JvkBurGYEsHPQqaGgZCUZBksGuoDFyUXKpwRRKhMlZCLhb4FNZCIck2SzgCjJ6Xc3ZAzx4JiWvE5S285mJq5IZBMpMF0MqzEVSYZAsL0KUw3WG28ZD",
+    Authorization: "Bearer EAANIKtenp4QBRasHpeIeEmkGZAVZAAWhGXRbtTbft32nkFKri20wcFrxCeNwPLswVCAHK7kNRATDuhjbWWEbN1GR4ek0sC8orivEgeagZCpZCV9wo6aUhEw9kCjl1id2CTccyxpz8P2auJlXhGSD4yZBfMRhpqsJo3Ijsl6ckGBR7oEPNdZBFwjOQvZBw2GAfz3hurFNlbpPFguZBYxg3EndDjxPrgn34OmwxpHTO8VtgGB76PTmpJZA6MoL3LOw9qoi0fknMJnrSD6YbkBdGyTgoJnnU",
     "Content-Type": "application/json"
 }
 
@@ -24,6 +24,14 @@ function buildPayload(to, data){
         case "text":
             return { ...base, type: "text", "text": {body: data.body} }            
         case "image":
+            return { ...base, type: "image", "image": {link: data.link, caption: data.caption} }
+        case "document":
+            return { ...base, type: "document", "document": {"link": data.link, caption: data.caption, "filename": data.filename} }
+        case "video":
+            return { ...base, type: "image", "image": {link: data.link, caption: data.caption} }
+        case "audio":
+            return { ...base, type: "image", "image": {link: data.link, caption: data.caption} }
+        case "location":
             return { ...base, type: "image", "image": {link: data.link, caption: data.caption} }            
     
         default:
