@@ -6,7 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cchura94/back-const-chatbot.git"
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cchura94/back-const-chatbot/issues"
+  },
+  "homepage": "https://github.com/cchura94/back-const-chatbot#readme",
+  "dependencies": {
+    "axios": "^1.16.1",
+    "express": "^5.2.1"
+  }
 }
