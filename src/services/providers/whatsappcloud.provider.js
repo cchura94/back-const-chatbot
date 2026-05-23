@@ -1,9 +1,8 @@
 const axios = require("axios");
 
 const whatsappUrl = `https://graph.facebook.com/v25.0/388467921024360/messages`
-
 const headers = {
-    Authorization: "Bearer EAANIKtenp4QBRasHpeIeEmkGZAVZAAWhGXRbtTbft32nkFKri20wcFrxCeNwPLswVCAHK7kNRATDuhjbWWEbN1GR4ek0sC8orivEgeagZCpZCV9wo6aUhEw9kCjl1id2CTccyxpz8P2auJlXhGSD4yZBfMRhpqsJo3Ijsl6ckGBR7oEPNdZBFwjOQvZBw2GAfz3hurFNlbpPFguZBYxg3EndDjxPrgn34OmwxpHTO8VtgGB76PTmpJZA6MoL3LOw9qoi0fknMJnrSD6YbkBdGyTgoJnnU",
+    Authorization: "Bearer "+process.env.WHATSAPP_ACCESS_TOKEN,
     "Content-Type": "application/json"
 }
 

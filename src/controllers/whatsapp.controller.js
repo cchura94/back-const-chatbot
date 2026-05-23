@@ -20,6 +20,35 @@ async function enviarMensaje(req, res){
     }
 }
 
+async function recibirMensaje(req, res){
+
+    
+    const entry = req.body.entry?.[0];
+    const changes = entry?.changes?.[0];
+    const value = changes?.value;
+
+    if(!value?.messages){
+        return res.sendStatus(200);
+    }
+    
+    const phoneId = value.metadata?.phone_number_id;
+
+    const message = value.messages[0];
+    const numero = message.from;
+
+    console.log(value.contacts[0].profile.name);
+
+    let mensajeUsuario = "";
+    if(message.type === "text"){
+        mensajeUsuario = message.text.body;
+    }
+
+    await whatsappService.enviarMensajeWhatsapp(numero, {type: "text",body: "Hola soy un Bot"});
+
+    return res.send("ok");
+}
+
 module.exports = {
-    enviarMensaje
+    enviarMensaje,
+    recibirMensaje
 }
