@@ -1,4 +1,5 @@
 const whatsappService = require("./../services/whatsapp.service");
+const openAiService = require("./../services/openai.service");
 
 async function enviarMensaje(req, res){
     try {
@@ -42,8 +43,9 @@ async function recibirMensaje(req, res){
     if(message.type === "text"){
         mensajeUsuario = message.text.body;
     }
+    const respuestaAI = await openAiService.generarRespuestaAI(mensajeUsuario, [], 'Actúa parte del equipo de ventas para atención mediante whatsapp, responde en menos de 30 palabras. No respondas preguntas que no estén relacionadas con los productos o servicios. Somos una tienda de equipos electrónicos.');
 
-    await whatsappService.enviarMensajeWhatsapp(numero, {type: "text",body: "Hola soy un Bot"});
+    await whatsappService.enviarMensajeWhatsapp(numero, {type: "text", body: respuestaAI.respuesta});
 
     return res.send("ok");
 }

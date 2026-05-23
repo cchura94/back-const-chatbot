@@ -27,11 +27,11 @@ function buildPayload(to, data){
         case "document":
             return { ...base, type: "document", "document": {"link": data.link, caption: data.caption, "filename": data.filename} }
         case "video":
-            return { ...base, type: "image", "image": {link: data.link, caption: data.caption} }
+            return { ...base, type: "video", "video": {link: data.link, caption: data.caption} }
         case "audio":
-            return { ...base, type: "image", "image": {link: data.link, caption: data.caption} }
+            return { ...base, type: "audio", "audio": {link: data.link, caption: data.caption} }
         case "location":
-            return { ...base, type: "image", "image": {link: data.link, caption: data.caption} }            
+            return { ...base, type: "location", "location": {longitude: data.longitude, latitude: data.latitude, name: data.name, address: data.address} }            
     
         default:
             break;

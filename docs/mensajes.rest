@@ -35,3 +35,18 @@ Content-Type: application/json
         "caption": "Hola te envío el temario del curso *n8n* con ia"
     }
 }
+
+### location
+POST http://127.0.0.1:3000/api/enviar-mensaje
+Content-Type: application/json
+
+{
+    "numero": "59173277937",
+    "mensaje": {
+        "type": "location",
+        "longitude": "-68.1193",
+        "latitude": "-16.4897",
+        "name": "La Paz, Bolivia",
+        "address": "La Paz, Bolivia"
+    }
+}
