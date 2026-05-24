@@ -5,11 +5,11 @@ const ChabotNode = sequelize.define(
   'ChabotNode',
   {
     // Model attributes are defined here
-    id: {
+    /*id: {
       type: DataTypes.INTEGER,
       autoincrement: true,
       primaryKey: true,
-    },
+    },*/
     node_key: { // main, servicios, agendar_cita, etc
       type: DataTypes.STRING,
       allowNull: false,

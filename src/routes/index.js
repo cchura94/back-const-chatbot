@@ -1,5 +1,6 @@
 const express = require("express");
 const whatsappController = require("./../controllers/whatsapp.controller");
+const botController = require("../controllers/bot.controller");
 
 const router = express.Router();
 
@@ -22,6 +23,13 @@ router.get("/webhook", function (req, res){
         return res.status(403).send("Token de verificación no coincide.");
     }
 });
+
+// CRUD Bots
+router.get("/bots", botController.getAll);
+router.post("/bots", botController.create);
+router.get("/bots/:id", botController.getOne);
+router.put("/bots/:id", botController.update);
+router.delete("/bots/:id", botController.delete);
 
 
 module.exports = router;
