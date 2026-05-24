@@ -1,0 +1,82 @@
+GET http://127.0.0.1:3000/api/chatbot/nodes?botId=1
+
+### guardar CHatbotNode
+POST http://127.0.0.1:3000/api/chatbot/nodes
+Content-Type: application/json
+
+{
+    "node_key": "servicios",
+    "mensaje": "Estos son nuestros servicios, elige una opción",
+    "tipo_mensaje": "text",
+    "botId": 1
+}
+
+### crear opción
+POST http://127.0.0.1:3000/api/chatbot/options
+Content-Type: application/json
+
+{
+    "key": "A",
+    "text": "Horarios de atención",
+    "respuesta": {
+        "type": "text",
+        "body": "Nuestro horario de atención es de lunes a viernes de 9am a 6pm"
+    },
+    "next_node_id": null,
+    "chatbotNodeId": 1 
+}
+
+### crear opcion B
+### crear opción
+POST http://127.0.0.1:3000/api/chatbot/options
+Content-Type: application/json
+
+{
+    "key": "B",
+    "text": "Ver servicios",
+    "respuesta": null,
+    "next_node_id": 2,
+    "chatbotNodeId": 1 
+}
+
+### crear opcion 1
+POST http://127.0.0.1:3000/api/chatbot/options
+Content-Type: application/json
+
+{
+    "key": "1",
+    "text": "Serivicios de mantenimiento",
+    "respuesta": {
+        "type": "text",
+        "body": "Ofrecemos servicios de mantenimiento preventivo y correctivo para equipos electrónicos"
+    },
+    "next_node_id": null,
+    "chatbotNodeId": 2
+}
+
+### crear opcion 2
+POST http://127.0.0.1:3000/api/chatbot/options
+Content-Type: application/json
+
+{
+    "key": "2",
+    "text": "Asesoramiento",
+    "respuesta": {
+        "type": "text",
+        "body": "Ofrecemos asesoramiento para la compra de equipos electrónicos, puedes contactarnos al 59173277937"
+    },
+    "next_node_id": null,
+    "chatbotNodeId": 2
+}
+
+### crear opcion 3
+POST http://127.0.0.1:3000/api/chatbot/options
+Content-Type: application/json
+
+{
+    "key": "3",
+    "text": "Volver",
+    "respuesta": null,
+    "next_node_id": 1,
+    "chatbotNodeId": 2
+}

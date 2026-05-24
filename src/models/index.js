@@ -2,7 +2,7 @@ const sequelize = require('../config/database');
 const Bot = require('./Bot');
 const ChabotNode = require('./ChatbotNode');
 const Option = require('./Option');
-const UserContext = require('./UserConext');
+const UserContext = require('./UserContext');
 
 // Un ChatbotNode tiene muchas opciones
 ChabotNode.hasMany(Option, { foreignKey: 'chatbotNodeId', as: 'opciones' });
