@@ -90,14 +90,14 @@ async function recibirMensaje(req, res){
         await context.update({ ai_history: historialLimitaldo });
 
         await whatsappService.enviarMensajeWhatsapp(numero, {type: "text", body: respuesta});
-        
+        return res.send("ok");
     }
 
-    if(opcion.respuesta){
+    if(opcion?.respuesta){
         await whatsappService.enviarMensajeWhatsapp(numero, opcion.respuesta);
     }
 
-    if(opcion.next_node_id){
+    if(opcion?.next_node_id){
         const nodeData2 = await ChabotNode.findOne({ where: { id: opcion.next_node_id} });
 
         await context.update({ current_node: nodeData2.node_key });

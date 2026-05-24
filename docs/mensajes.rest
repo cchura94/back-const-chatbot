@@ -15,10 +15,7 @@ Content-Type: application/json
 
 {
     "numero": "59173277937",
-    "mensaje": {
-        "type": "image",
-        "link": "https://blumbitvirtual.edtics.com/pluginfile.php/6773/course/overviewfiles/Post%20N8N.jpg"
-    }
+    "mensaje": {"type": "image","link": "https://blumbitvirtual.edtics.com/pluginfile.php/6773/course/overviewfiles/Post%20N8N.jpg"}
 }
 
 
