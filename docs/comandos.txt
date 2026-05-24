@@ -2,3 +2,6 @@ npm init --y
 npm install express
 npm install axios
 npm install dotenv --save
+npm install openai
+npm install --save sequelize
+npm install --save pg pg-hstore
