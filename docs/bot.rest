@@ -5,12 +5,12 @@ POST http://127.0.0.1:3000/api/bots
 Content-Type: application/json
 
 {
-    "id": 1,
-    "name": "Primer Bot",
-    "plataforma": "cloud",
-    "status": "Activo",
-    "identifier": "388467921024360",
+    "id": 2,
+    "name": "Segundo Bot",
+    "plataforma": "evolution",
+    "status": "Inactivo",
+    "identifier": "segundo",
     "prompt": "Actua como vendedor de equipos electronicos",
-    "acces_token": "EAANIKtenp4QBRtxjCkUpLoy2Ii7wUHBYtpKyrMoOCvaDNZBXhVQuhmZAAhi5WJjHyWZBYpemReWxdJY7lhhMGLiMQTyHwgAAAboafsjtEFBGrxEdyNnYJMoTys2mMXiVWEsbLvofZApLPvw4UN0IN5XbJSnp3dTH3SlSZBDUTTZCqmlI7gibVZBs95u0ZAdyRJMmoQleq84e94Dy10VqE8gnSBJU5aCyyWe8cZCmParaSmfUom3s0tk6EFYtv7OL1bYCrgZC2BT7ZAiaDy7QhBacjZBuirRWmwZDZD",
-    "webhook_verify_token": "Mi.TOKEN.SEGURO.321"    
+    "acces_token": "234567890'098765432456789",
+    "webhook_verify_token": ""    
 }

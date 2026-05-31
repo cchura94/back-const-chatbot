@@ -1,12 +1,15 @@
 const axios = require("axios");
 
-const whatsappUrl = `https://graph.facebook.com/v25.0/388467921024360/messages`
-const headers = {
-    Authorization: "Bearer "+process.env.WHATSAPP_ACCESS_TOKEN,
-    "Content-Type": "application/json"
-}
 
-async function sendMessage(number, messageData){
+async function sendMessage(number, messageData, botConfig){
+    
+    const whatsappUrl = `https://graph.facebook.com/v25.0/${botConfig.identifier}/messages`
+    
+    const headers = {
+        Authorization: "Bearer "+ botConfig.acces_token,
+        "Content-Type": "application/json"
+    }
+
     const payload = buildPayload(number, messageData);
     const respuesta = await axios.post(whatsappUrl, payload, {headers});
     return respuesta.data;

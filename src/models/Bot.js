@@ -45,7 +45,11 @@ const Bot = sequelize.define(
     webhook_verify_token: {
         type: DataTypes.STRING,
         allowNull: true,
-    }
+    },
+    openai_api_key: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
   },
   {
     timestamps: true

@@ -1,6 +1,7 @@
 require('dotenv').config() // .env
 const express = require("express");
 const router = require("./routes");
+var cors = require('cors')
 const { sequelize } = require('./models');
 
 const PORT = process.env.PORT || 3000;
@@ -8,6 +9,8 @@ const PORT = process.env.PORT || 3000;
 // Crear una instancia de Express
 const app = express();
 
+// habilitando cors
+app.use(cors())
 // req.body
 app.use(express.json());
 

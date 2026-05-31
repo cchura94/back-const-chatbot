@@ -37,6 +37,7 @@ async function recibirMensaje(req, res){
     const phoneId = value.metadata?.phone_number_id;
 
     const botConfig = await Bot.findOne({ where: { identifier: phoneId } });
+    console.log(botConfig);
 
     if(!botConfig){
         console.log("No se encontró configuración para el phone_number_id:", phoneId);
@@ -66,12 +67,12 @@ async function recibirMensaje(req, res){
     });
 
     if(created){
-        await enviarMensajeDinamico(numero, "main");
+        await enviarMensajeDinamico(numero, "main", botConfig);
         return res.sendStatus(200);
     }
 
     const nodoData = await ChabotNode.findOne({
-        where: { node_key: context.current_node}
+        where: { node_key: context.current_node, botId: botConfig.id}
     });
 
     const opcion = await Option.findOne({
@@ -84,17 +85,17 @@ async function recibirMensaje(req, res){
     if(!opcion){
         const promptActual = botConfig.prompt || "Eres un asistente responde en menos de 30 palabras";
 
-        const { respuesta, nuevoHistorial} = await openAiService.generarRespuestaAI(mensajeUsuario, context.ai_history || [], promptActual);
+        const { respuesta, nuevoHistorial} = await openAiService.generarRespuestaAI(mensajeUsuario, context.ai_history || [], promptActual, botConfig.openai_api_key);
 
         const historialLimitaldo = nuevoHistorial.slice(-10);
         await context.update({ ai_history: historialLimitaldo });
 
-        await whatsappService.enviarMensajeWhatsapp(numero, {type: "text", body: respuesta});
+        await whatsappService.enviarMensajeWhatsapp(numero, {type: "text", body: respuesta}, botConfig);
         return res.send("ok");
     }
 
     if(opcion?.respuesta){
-        await whatsappService.enviarMensajeWhatsapp(numero, opcion.respuesta);
+        await whatsappService.enviarMensajeWhatsapp(numero, opcion.respuesta, botConfig);
     }
 
     if(opcion?.next_node_id){
@@ -102,15 +103,16 @@ async function recibirMensaje(req, res){
 
         await context.update({ current_node: nodeData2.node_key });
 
-        await enviarMensajeDinamico(numero, nodeData2.node_key);
+        await enviarMensajeDinamico(numero, nodeData2.node_key, botConfig);
     }
 
     return res.send("ok");
 }
 
 
-async function enviarMensajeDinamico(numero, nodeId){
-    const nodo = await ChabotNode.findOne({ where: { node_key: nodeId}, include: [{model: Option, as: 'opciones'}] });
+async function enviarMensajeDinamico(numero, nodeId, botConfig){
+    console.log("BOT***: ", botConfig.id)
+    const nodo = await ChabotNode.findOne({ where: { node_key: nodeId, botId: botConfig.id}, include: [{model: Option, as: 'opciones'}] });
 
     if(!nodo){
         console.log("Nodo no encontrado:", nodeId);
@@ -119,7 +121,7 @@ async function enviarMensajeDinamico(numero, nodeId){
 
     const opcionesTexto = nodo.opciones.map(opt => `- 👉 *${opt.key}*: ${opt.text}`).join("\n");
     const mensajeFinal = `${nodo.mensaje}\n\n${opcionesTexto}\n\n> *Indícanos qué opción te interesa conocer!* `;
-    await whatsappService.enviarMensajeWhatsapp(numero, {type: "text", body: mensajeFinal});
+    await whatsappService.enviarMensajeWhatsapp(numero, {type: "text", body: mensajeFinal}, botConfig);
 }
 
 module.exports = {

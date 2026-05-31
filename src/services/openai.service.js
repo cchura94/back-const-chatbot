@@ -1,14 +1,15 @@
 // npm install openai
 const { OpenAI } = require('openai');
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
 
 
 
-async function generarRespuestaAI(mensajeUsuario, historialAnterior=[], promptSistema){
+async function generarRespuestaAI(mensajeUsuario, historialAnterior=[], promptSistema, apikey){
     try {
+        const openai = new OpenAI({
+            apiKey: apikey || process.env.OPENAI_API_KEY,
+        });
+
         const messages = [
             { role:'system', content: promptSistema },
             ...historialAnterior,

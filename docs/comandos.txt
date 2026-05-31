@@ -5,3 +5,4 @@ npm install dotenv --save
 npm install openai
 npm install --save sequelize
 npm install --save pg pg-hstore
+npm i cors
